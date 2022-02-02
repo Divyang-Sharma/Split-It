@@ -1,8 +1,10 @@
 package com.example.split_it.database.model
 
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 
+@Entity
 data class Group (
 
     @PrimaryKey(autoGenerate = true)

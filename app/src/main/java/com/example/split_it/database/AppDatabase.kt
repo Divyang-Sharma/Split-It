@@ -4,6 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.split_it.database.dao.ExpenseDao
+import com.example.split_it.database.dao.GroupDao
+import com.example.split_it.database.dao.TransactionDao
 import com.example.split_it.database.dao.UserDao
 import com.example.split_it.database.model.Expense
 import com.example.split_it.database.model.Group
@@ -17,14 +21,23 @@ import kotlinx.coroutines.CoroutineScope
  */
 @Database(
     entities = [
-        User::class
+        User::class,
+        Group::class,
+        Expense::class,
+        Transaction::class
     ],
     version = 1,
     exportSchema = false
 )
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
+    //DAO's
     abstract fun userDao(): UserDao
+    abstract fun groupDao(): GroupDao
+    abstract fun expenseDao(): ExpenseDao
+    abstract fun transactionDao(): TransactionDao
+
 
     companion object {
 
