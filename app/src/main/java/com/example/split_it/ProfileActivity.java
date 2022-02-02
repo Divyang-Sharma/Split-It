@@ -41,7 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this, gso);
-
+      //Fetching User Data and Show In Profile
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
             String personName = acct.getDisplayName();
@@ -53,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
             Glide.with(this).load(String.valueOf(Photo)).into(ProfilePhoto);
 
         }
-
+//Sign-Out Button On Click Listener
         signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +63,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     }
-
+//Sign-Out
     void signOut(){
         gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
