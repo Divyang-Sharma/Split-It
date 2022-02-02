@@ -10,22 +10,22 @@
 
     <Button
         android:id="@+id/button_login"
-        android:layout_width="258dp"
-        android:layout_height="46dp"
+        android:layout_width="305dp"
+        android:layout_height="64dp"
         android:background="#285680"
         android:text="Login with"
         app:cornerRadius="15dp"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="584dp" />
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="574dp" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="232dp"
         android:layout_height="295dp"
         app:srcCompat="@drawable/split"
-        tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="141dp" />
+        tools:layout_editor_absoluteX="91dp"
+        tools:layout_editor_absoluteY="139dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -38,7 +38,7 @@
         android:textColor="#FFFFFF"
         android:textSize="25sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="420dp" />
+        tools:layout_editor_absoluteX="169dp"
+        tools:layout_editor_absoluteY="427dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
