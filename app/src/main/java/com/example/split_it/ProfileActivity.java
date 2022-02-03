@@ -23,25 +23,29 @@ import java.time.Instant;
 public class ProfileActivity extends AppCompatActivity {
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
-    TextView name,email;
+    TextView name, email;
     Button signOutBtn;
     ImageView ProfilePhoto;
+    Button groupBtn;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-// xml component declaration
+        // xml component declaration
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
         signOutBtn = findViewById(R.id.signout);
         ProfilePhoto = findViewById(R.id.ProfilePhoto);
 
+        //Dummy -> Will remove the code below after testing
+        groupBtn = findViewById(R.id.dummy_button);
+        //------------------------------------------------------------------------------------------
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this, gso);
-      //Fetching User Data and Show In Profile
+        //Fetching User Data and Show In Profile
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
             String personName = acct.getDisplayName();
@@ -53,7 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
             Glide.with(this).load(String.valueOf(Photo)).into(ProfilePhoto);
 
         }
-//Sign-Out Button On Click Listener
+        //Sign-Out Button On Click Listener
         signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,14 +66,25 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
 
+        // This will be removed after testing
+        //------------------------------------------------------------------------------------------
+        groupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent n = new Intent(ProfileActivity.this, GroupActivity.class);
+                startActivity(n);
+            }
+        });
+        //------------------------------------------------------------------------------------------
     }
-//Sign-Out
-    void signOut(){
+
+    //Sign-Out
+    void signOut() {
         gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(Task<Void> task) {
                 finish();
-                startActivity(new Intent(ProfileActivity.this,LoginActivity.class));
+                startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
             }
         });
     }

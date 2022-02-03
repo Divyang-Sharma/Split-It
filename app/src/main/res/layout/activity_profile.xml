@@ -42,24 +42,36 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="16dp"
         android:text="Sign out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ProfilePhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/ProfilePhoto"
+        app:layout_constraintVertical_bias="0.921" />
 
     <ImageView
         android:id="@+id/ProfilePhoto"
         android:layout_width="197dp"
         android:layout_height="0dp"
         android:layout_marginTop="56dp"
-        android:layout_marginBottom="445dp"
-        app:layout_constraintBottom_toTopOf="@+id/signout"
+        android:layout_marginBottom="203dp"
+        app:layout_constraintBottom_toTopOf="@+id/dummy_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/dummy_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="258dp"
+        android:text="Group"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProfilePhoto" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
