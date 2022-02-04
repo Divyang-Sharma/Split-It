@@ -35,7 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
         signOutBtn = findViewById(R.id.signout);
-        ProfilePhoto = findViewById(R.id.ProfilePhoto);
+        ProfilePhoto = findViewById(R.id.ProfilePhoto_profile);
 
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
