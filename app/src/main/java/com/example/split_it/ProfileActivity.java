@@ -1,8 +1,14 @@
 package com.example.split_it;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -19,24 +25,28 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
-    TextView name,email;
     Button signOutBtn;
     ImageView ProfilePhoto;
-
-
+    TextView name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-// xml component declaration
+        // xml component declaration
         name = findViewById(R.id.name);
-        email = findViewById(R.id.email);
         signOutBtn = findViewById(R.id.signout);
         ProfilePhoto = findViewById(R.id.ProfilePhoto);
+        Resources res = getResources();
+        Drawable defaultimage = ResourcesCompat.getDrawable(res, R.drawable.image, null);
+
+
 
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
@@ -47,10 +57,9 @@ public class ProfileActivity extends AppCompatActivity {
             String personName = acct.getDisplayName();
             String personEmail = acct.getEmail();
             Uri Photo = acct.getPhotoUrl();
-
             name.setText(personName);
-            email.setText(personEmail);
-            Glide.with(this).load(String.valueOf(Photo)).into(ProfilePhoto);
+
+            Glide.with(this).load(String.valueOf(Photo)).placeholder(defaultimage).into(ProfilePhoto);
 
         }
 //Sign-Out Button On Click Listener
@@ -60,8 +69,19 @@ public class ProfileActivity extends AppCompatActivity {
                 signOut();
             }
         });
-
-
+        //Recycler-View
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new CustomAdapter(generateData()));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+    }
+//Data send in Recycler-View
+    private List<String> generateData() {
+        List<String> data = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            data.add(String.valueOf(i) + "--Row");
+        }
+        return data;
     }
 //Sign-Out
     void signOut(){
@@ -72,5 +92,7 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this,LoginActivity.class));
             }
         });
+
     }
+
 }
