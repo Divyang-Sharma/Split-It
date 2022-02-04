@@ -43,7 +43,6 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 // xml component declaration
         name = findViewById(R.id.name);
-        email = findViewById(R.id.email);
         signOutBtn = findViewById(R.id.signout);
         ProfilePhoto = findViewById(R.id.ProfilePhoto);
         Resources res = getResources();
@@ -61,7 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
             String personName = acct.getDisplayName();
-            String personEmail = acct.getEmail();
+
             Uri Photo = acct.getPhotoUrl();
 
             name.setText(personName);
