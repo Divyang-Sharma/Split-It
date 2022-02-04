@@ -3,11 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/activity_login.xml" value="0.1598731884057971" />
         <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/activity_profile.xml" value="0.12158054711246201" />
-        <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/fragment_group_members.xml" value="0.121875" />
-        <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/fragment_transactions.xml" value="0.12158054711246201" />
       </map>
     </option>
   </component>
