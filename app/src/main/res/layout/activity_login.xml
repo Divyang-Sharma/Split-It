@@ -46,7 +46,7 @@
         android:src="@drawable/logo" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/paid_by_text_view"
         android:layout_width="124dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/logo"

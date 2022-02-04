@@ -3,12 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/pishu/AndroidStudioProjects/Split-It/app/src/main/res/layout/activity_expenses.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/pishu/AndroidStudioProjects/Split-It/app/src/main/res/layout/activity_home.xml" value="0.152" />
-        <entry key="..\:/Users/pishu/AndroidStudioProjects/Split-It/app/src/main/res/layout/activity_login.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/pishu/AndroidStudioProjects/Split-It/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/pishu/AndroidStudioProjects/Split-It/app/src/main/res/layout/activity_profile.xml" value="0.2" />
-        <entry key="..\:/Users/pishu/AndroidStudioProjects/Split-It/app/src/main/res/layout/activity_transactions.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/91917/StudioProjects/Split-It/app/src/main/res/drawable/ic_baseline_folder_24.xml" value="0.227" />
+        <entry key="..\:/Users/91917/StudioProjects/Split-It/app/src/main/res/layout/activity_expenses.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/91917/StudioProjects/Split-It/app/src/main/res/layout/activity_group.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/91917/StudioProjects/Split-It/app/src/main/res/layout/activity_login.xml" value="0.15625" />
+        <entry key="..\:/Users/91917/StudioProjects/Split-It/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/91917/StudioProjects/Split-It/app/src/main/res/layout/activity_profile.xml" value="0.264" />
+        <entry key="..\:/Users/91917/StudioProjects/Split-It/app/src/main/res/layout/activity_transactions.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/91917/StudioProjects/Split-It/app/src/main/res/layout/card_view_design_expenses.xml" value="0.25" />
+        <entry key="..\:/Users/91917/StudioProjects/Split-It/app/src/main/res/layout/fragment_expenses.xml" value="0.15942028985507245" />
+        <entry key="..\:/Users/91917/StudioProjects/Split-It/app/src/main/res/layout/fragment_group_members.xml" value="0.1" />
+        <entry key="..\:/Users/91917/StudioProjects/Split-It/app/src/main/res/layout/fragment_transactions.xml" value="0.15942028985507245" />
+        <entry key="..\:/Users/Divyang Sharma/AndroidStudioProjects/Split-It/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/Divyang Sharma/AndroidStudioProjects/Split-It/app/src/main/res/layout/activity_profile.xml" value="0.13055555555555556" />
+        <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/activity_main.xml" value="0.25" />
       </map>
     </option>
   </component>
