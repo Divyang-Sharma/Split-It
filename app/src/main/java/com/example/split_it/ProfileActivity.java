@@ -31,16 +31,19 @@ import java.util.List;
 public class ProfileActivity extends AppCompatActivity {
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
+    TextView name, email;
     Button signOutBtn;
     ImageView ProfilePhoto;
-    TextView name;
+    Button groupBtn;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        // xml component declaration
+// xml component declaration
         name = findViewById(R.id.name);
+        email = findViewById(R.id.email);
         signOutBtn = findViewById(R.id.signout);
         ProfilePhoto = findViewById(R.id.ProfilePhoto);
         Resources res = getResources();
@@ -48,6 +51,9 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
+        //Dummy -> Will remove the code below after testing
+        groupBtn = findViewById(R.id.dummy_button);
+        //------------------------------------------------------------------------------------------
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this, gso);
@@ -57,6 +63,7 @@ public class ProfileActivity extends AppCompatActivity {
             String personName = acct.getDisplayName();
             String personEmail = acct.getEmail();
             Uri Photo = acct.getPhotoUrl();
+
             name.setText(personName);
 
             Glide.with(this).load(String.valueOf(Photo)).placeholder(defaultimage).into(ProfilePhoto);
@@ -69,6 +76,18 @@ public class ProfileActivity extends AppCompatActivity {
                 signOut();
             }
         });
+
+
+        // This will be removed after testing
+        //------------------------------------------------------------------------------------------
+        groupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent n = new Intent(ProfileActivity.this, GroupActivity.class);
+                startActivity(n);
+            }
+        });
+        //------------------------------------------------------------------------------------------
         //Recycler-View
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -92,7 +111,5 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this,LoginActivity.class));
             }
         });
-
     }
-
 }

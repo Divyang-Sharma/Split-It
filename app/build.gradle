@@ -1,9 +1,19 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('split-it-debug.keystore')
+            storePassword 'android'
+            keyAlias 'android'
+            keyPassword 'android'
+        }
+    }
     compileSdk 31
 
     defaultConfig {
@@ -32,6 +42,16 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.gms:play-services-base:18.0.1'
+    implementation 'com.google.android.gms:play-services-auth:20.1.0'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    //View Pager
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+    //tablayout
+    implementation 'com.google.android.material:material:1.6.0-alpha02'
 
     //Versions
     def room_version = "2.4.1"
@@ -43,6 +63,8 @@ dependencies {
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     //Livedata & ViewModel
@@ -54,6 +76,10 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.9'
+
     //Testing
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
