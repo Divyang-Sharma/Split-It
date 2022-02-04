@@ -9,16 +9,24 @@ import com.example.split_it.R
 
 class TransactionsFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    var transactionsView : View? = null
 
+    /**
+     * Similar to onCreate in Activity
+     * The respective layout is inflated and returned
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transactions, container, false)
+
+        transactionsView = inflater.inflate(R.layout.fragment_group_members, container, false)
+
+        //TODO: logic of transactions goes here
+
+        //use findViewById with view `transactionsView?.findViewById<>()`
+
+        return transactionsView
     }
 
 }

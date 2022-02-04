@@ -8,16 +8,24 @@ import android.view.ViewGroup
 import com.example.split_it.R
 
 class ExpensesFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    var expensesView : View? = null
 
+    /**
+     * Similar to onCreate in Activity
+     * The respective layout is inflated and returned
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_expenses, container, false)
+
+        expensesView = inflater.inflate(R.layout.fragment_expenses, container, false)
+
+        //TODO: logic of expenses goes here
+
+        //use findViewById with view `expensesView?.findViewById<>()`
+
+        return expensesView
     }
 
 }
