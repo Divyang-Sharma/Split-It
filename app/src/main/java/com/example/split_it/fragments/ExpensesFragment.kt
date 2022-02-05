@@ -32,6 +32,7 @@ class ExpensesFragment : Fragment() {
         val activityContext = requireContext()
         val database = AppDatabase.getDatabase(activityContext)
         val expenseRepository = ExpenseRepository(database)
+
         val recyclerview = expensesView?.findViewById<RecyclerView>(R.id.recyclerview)
 
         // this creates a vertical layout Manager

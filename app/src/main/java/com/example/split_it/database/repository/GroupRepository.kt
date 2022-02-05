@@ -45,4 +45,11 @@ class GroupRepository(val database: AppDatabase) {
     fun getGroups(): LiveData<List<Group>> {
         return dao.getGroups().asLiveData()
     }
+
+    /**
+     * Returns livedata of group by id.
+     */
+    fun getGroupForId(groupId : Int): LiveData<Group> {
+        return dao.getGroupFromId(groupId).asLiveData()
+    }
 }

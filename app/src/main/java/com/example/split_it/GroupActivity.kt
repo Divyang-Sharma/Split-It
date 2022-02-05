@@ -35,10 +35,9 @@ class GroupActivity : AppCompatActivity() {
         val expenseRepository = ExpenseRepository(database)
 
         val user1 = User(1,"split","splitupi")
-        val user2 = User(1,"split","splitupi")
+        val user2 = User(2,"split","splitupi")
 
-        val groups = ArrayList<Int>()
-        groups.add(1)
+        val groups: List<Int> = listOf(1)
         val group = Group(1, "splitgroup",groups)
         val expense = Expense(1,1,1,200.0,"splitopic")
 
