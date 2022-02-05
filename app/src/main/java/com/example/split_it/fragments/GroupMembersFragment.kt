@@ -42,7 +42,10 @@ class GroupMembersFragment(
         // this creates a vertical layout Manager
         recyclerview?.layoutManager = LinearLayoutManager(context)
 
+        // Gets the group
         groupRepository.getGroupForId(groupId).observe(context as LifecycleOwner) { group ->
+
+            // Gets the list of users for the current group
             userRepository.getUsersForGroup(group.users ?: listOf())
                 .observe(context as LifecycleOwner) { membersList ->
                     // This will pass the ArrayList to our Adapter

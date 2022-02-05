@@ -15,7 +15,7 @@ import com.example.split_it.database.model.Expense
 import com.example.split_it.database.repository.ExpenseRepository
 import com.example.split_it.viewModels.ItemViewModelExpenses
 
-class ExpensesFragment(groupId: Int) : Fragment() {
+class ExpensesFragment(val groupId: Int) : Fragment() {
     var expensesView : View? = null
 
     /**
@@ -38,8 +38,8 @@ class ExpensesFragment(groupId: Int) : Fragment() {
         // this creates a vertical layout Manager
         recyclerview?.layoutManager = LinearLayoutManager(context)
 
-        // ArrayList of class ItemsViewModel
-        expenseRepository.getExpenses().observe(context as LifecycleOwner) { expenseList ->
+        // Gets the expense for group
+        expenseRepository.getExpensesForGroup(groupId).observe(context as LifecycleOwner) { expenseList ->
 
             // This will pass the ArrayList to our Adapter
             val expenseAdapter = AdapterExpenses(activityContext, expenseList, database)
