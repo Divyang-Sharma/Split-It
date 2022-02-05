@@ -14,4 +14,10 @@ interface UserDao : AbstractDao<User> {
     @Query("SELECT * FROM User")
     fun getUsers(): Flow<List<User>>
 
+
+    /**
+     * Returns all the users from the table
+     */
+    @Query("SELECT * FROM User WHERE id=:userId")
+    fun getUser(userId: Int?): Flow<User?>
 }

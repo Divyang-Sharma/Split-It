@@ -45,4 +45,8 @@ class UserRepository(val database: AppDatabase) {
     fun getUsers(): LiveData<List<User>> {
         return dao.getUsers().asLiveData()
     }
+
+    fun getUser(userId: Int?): LiveData<User?> {
+        return dao.getUser(userId).asLiveData()
+    }
 }
