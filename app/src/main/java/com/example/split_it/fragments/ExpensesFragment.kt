@@ -15,7 +15,7 @@ import com.example.split_it.database.model.Expense
 import com.example.split_it.database.repository.ExpenseRepository
 import com.example.split_it.viewModels.ItemViewModelExpenses
 
-class ExpensesFragment : Fragment() {
+class ExpensesFragment(groupId: Int) : Fragment() {
     var expensesView : View? = null
 
     /**

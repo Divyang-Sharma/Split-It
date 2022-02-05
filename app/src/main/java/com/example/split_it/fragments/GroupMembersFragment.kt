@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.split_it.R
 import com.example.split_it.adapters.AdapterMembers
 import com.example.split_it.database.AppDatabase
-import com.example.split_it.database.repository.ExpenseRepository
 import com.example.split_it.database.repository.GroupRepository
 import com.example.split_it.database.repository.UserRepository
-import com.example.split_it.viewModels.ItemViewModelMembers
 
-class GroupMembersFragment : Fragment() {
+class GroupMembersFragment(
+    val groupId: Int
+) : Fragment() {
 
-    var groupMembersView : View? = null
+    var groupMembersView: View? = null
 
     /**
      * Similar to onCreate in Activity
@@ -42,14 +42,15 @@ class GroupMembersFragment : Fragment() {
         // this creates a vertical layout Manager
         recyclerview?.layoutManager = LinearLayoutManager(context)
 
-        groupRepository.getGroupForId(1).observe(context as LifecycleOwner) { group ->
-            userRepository.getUsersForGroup(group.users ?: listOf()).observe(context as LifecycleOwner) { membersList ->
-                // This will pass the ArrayList to our Adapter
-                val adapter = AdapterMembers(activityContext, membersList)
+        groupRepository.getGroupForId(groupId).observe(context as LifecycleOwner) { group ->
+            userRepository.getUsersForGroup(group.users ?: listOf())
+                .observe(context as LifecycleOwner) { membersList ->
+                    // This will pass the ArrayList to our Adapter
+                    val adapter = AdapterMembers(activityContext, membersList)
 
-                // Setting the Adapter with the recyclerview
-                recyclerview?.adapter = adapter
-            }
+                    // Setting the Adapter with the recyclerview
+                    recyclerview?.adapter = adapter
+                }
         }
 
 
