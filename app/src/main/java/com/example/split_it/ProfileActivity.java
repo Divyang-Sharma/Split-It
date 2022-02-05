@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -28,14 +29,16 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     TextView name, email;
     Button signOutBtn;
     ImageView ProfilePhoto;
     Button groupBtn;
+    private TextView textViewUsername;
 
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,16 @@ public class ProfileActivity extends AppCompatActivity {
             Glide.with(this).load(String.valueOf(Photo)).placeholder(defaultimage).into(ProfilePhoto);
 
         }
+//Dialog
+        textViewUsername = (TextView) findViewById(R.id.textview_username);
+
+        button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View v) {
+                                          openDialog();
+                                      }
+        });
 //Sign-Out Button On Click Listener
         signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +113,22 @@ public class ProfileActivity extends AppCompatActivity {
             data.add(String.valueOf(i) + "--Row");
         }
         return data;
+
     }
+    //Dialog Funtions
+    public void openDialog() {
+        ExampleDialog exampleDialog = new ExampleDialog();
+        exampleDialog.show(getSupportFragmentManager(), "example dialog");
+    }
+
+    @Override
+    public void applyTexts(String username) {
+        textViewUsername.setText(username);
+
+    }
+
+
+
 //Sign-Out
     void signOut(){
         gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -110,5 +138,6 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this,LoginActivity.class));
             }
         });
+
     }
 }
