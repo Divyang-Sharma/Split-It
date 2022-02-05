@@ -20,9 +20,7 @@ class GroupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group)
 
-        //TODO: Change it back
-//        val6 groupId = intent.extras?.getInt("groupId",-1)
-        val groupId = 1
+        val groupId = intent.getIntExtra("groupId",-1)
 
         if(groupId == -1) {
             Toast.makeText(this,"Some error has occured!",LENGTH_SHORT).show()
