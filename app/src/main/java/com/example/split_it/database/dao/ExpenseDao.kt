@@ -16,4 +16,11 @@ interface ExpenseDao : AbstractDao<Expense> {
     @Query("SELECT * FROM Expense")
     fun getExpenses(): Flow<List<Expense>>
 
+
+    /**
+     * Returns all the expenses for the given group
+     */
+    @Query("SELECT * FROM Expense WHERE groupId=:groupId")
+    fun getExpensesForGroup(groupId : Int): Flow<List<Expense>>
+
 }

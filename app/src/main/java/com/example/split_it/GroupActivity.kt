@@ -1,9 +1,18 @@
 package com.example.split_it
 
 import android.os.Bundle
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.split_it.adapters.ViewPagerAdapter
+import com.example.split_it.database.AppDatabase
+import com.example.split_it.database.model.Expense
+import com.example.split_it.database.model.Group
+import com.example.split_it.database.model.User
+import com.example.split_it.database.repository.ExpenseRepository
+import com.example.split_it.database.repository.GroupRepository
+import com.example.split_it.database.repository.UserRepository
 import com.google.android.material.tabs.TabLayout
 
 class GroupActivity : AppCompatActivity() {
@@ -11,14 +20,46 @@ class GroupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group)
 
+        //TODO: Change it back
+//        val6 groupId = intent.extras?.getInt("groupId",-1)
+        val groupId = 1
+
+        if(groupId == -1) {
+            Toast.makeText(this,"Some error has occured!",LENGTH_SHORT).show()
+            finish()
+        }
+
         //UI assignments
         val tabLayout = findViewById<TabLayout>(R.id.tab_layout)
         val viewPager2 = findViewById<ViewPager2>(R.id.view_pager_2)
 
         // Setting adapter
-        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
+        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager, lifecycle, groupId)
         viewPager2.adapter = viewPagerAdapter
         viewPagerAdapter.setUpTabTitles(viewPager2, tabLayout)
+
+
+        //Testing Purpose
+        val database = AppDatabase.getDatabase(this)
+        val userRepository = UserRepository(database)
+        val groupRepository = GroupRepository(database)
+        val expenseRepository = ExpenseRepository(database)
+
+        val user1 = User(1,"split","splitupi")
+        val user2 = User(2,"split","splitupi")
+
+        val groups: List<Int> = listOf(1)
+        val group = Group(1, "splitgroup",groups)
+        val expense = Expense(1,1,1,200.0,"splitopic")
+
+        userRepository.insertUser(user1)
+        userRepository.insertUser(user2)
+
+        groupRepository.insertGroup(group)
+        expenseRepository.insertExpense(expense)
+
+
+
 
     }
 }

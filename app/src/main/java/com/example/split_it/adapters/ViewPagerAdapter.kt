@@ -23,7 +23,8 @@ import com.google.android.material.tabs.TabLayoutMediator
  */
 class ViewPagerAdapter(
     fragmentManager: FragmentManager,
-    lifecycle: Lifecycle
+    lifecycle: Lifecycle,
+    val groupId: Int
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
     // order in which tabs are displayed
@@ -46,9 +47,9 @@ class ViewPagerAdapter(
      */
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            GROUP_MEMBERS_TAB_POSITION -> GroupMembersFragment()
-            EXPENSE_TAB_POSITION -> ExpensesFragment()
-            TRANSACTIONS_TAB_POSITION -> TransactionsFragment()
+            GROUP_MEMBERS_TAB_POSITION -> GroupMembersFragment(groupId)
+            EXPENSE_TAB_POSITION -> ExpensesFragment(groupId)
+            TRANSACTIONS_TAB_POSITION -> TransactionsFragment(groupId)
             else -> Fragment() // default case | shouldn't happen
         }
     }
