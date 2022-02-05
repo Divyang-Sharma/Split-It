@@ -1,8 +1,14 @@
 package com.example.split_it;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +25,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
     GoogleSignInOptions gso;
@@ -33,11 +41,14 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        // xml component declaration
+// xml component declaration
         name = findViewById(R.id.name);
-        email = findViewById(R.id.email);
         signOutBtn = findViewById(R.id.signout);
         ProfilePhoto = findViewById(R.id.ProfilePhoto);
+        Resources res = getResources();
+        Drawable defaultimage = ResourcesCompat.getDrawable(res, R.drawable.image, null);
+
+
 
         //Dummy -> Will remove the code below after testing
         groupBtn = findViewById(R.id.dummy_button);
@@ -45,19 +56,19 @@ public class ProfileActivity extends AppCompatActivity {
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this, gso);
-        //Fetching User Data and Show In Profile
+      //Fetching User Data and Show In Profile
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
             String personName = acct.getDisplayName();
-            String personEmail = acct.getEmail();
+
             Uri Photo = acct.getPhotoUrl();
 
             name.setText(personName);
-            email.setText(personEmail);
-            Glide.with(this).load(String.valueOf(Photo)).into(ProfilePhoto);
+
+            Glide.with(this).load(String.valueOf(Photo)).placeholder(defaultimage).into(ProfilePhoto);
 
         }
-        //Sign-Out Button On Click Listener
+//Sign-Out Button On Click Listener
         signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,15 +87,27 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
         //------------------------------------------------------------------------------------------
+        //Recycler-View
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new CustomAdapter(generateData()));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
-
-    //Sign-Out
-    void signOut() {
+//Data send in Recycler-View
+    private List<String> generateData() {
+        List<String> data = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            data.add(String.valueOf(i) + "--Row");
+        }
+        return data;
+    }
+//Sign-Out
+    void signOut(){
         gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(Task<Void> task) {
                 finish();
-                startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                startActivity(new Intent(ProfileActivity.this,LoginActivity.class));
             }
         });
     }
