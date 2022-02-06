@@ -9,6 +9,7 @@
         <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.146" />
         <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/drawable/ic_plus_24.xml" value="0.2325" />
         <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/activity_expenses.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/activity_group.xml" value="0.19610507246376813" />
         <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/activity_profile.xml" value="0.19610507246376813" />
@@ -17,6 +18,7 @@
         <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/card_view_design_transactions.xml" value="0.1897644927536232" />
         <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/fragment_expenses.xml" value="0.19610507246376813" />
         <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/fragment_group_members.xml" value="0.1897644927536232" />
+        <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/fragment_transactions.xml" value="0.12158054711246201" />
         <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/layout_dialog.xml" value="0.19610507246376813" />
         <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/layout_dialog_new_expense.xml" value="0.19610507246376813" />
         <entry key="..\:/Users/pvija/AndroidStudioProjects/SplitIt/app/src/main/res/layout/layout_dialog_new_member.xml" value="0.19610507246376813" />

@@ -7,6 +7,7 @@ import com.example.split_it.database.dao.TransactionDao
 import com.example.split_it.database.model.Transaction
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 /**
@@ -59,4 +60,12 @@ class TransactionRepository(val database: AppDatabase) {
     fun getTransactionsForExpenseInSync(expenseId: Int): Transaction {
         return dao.getTransactionsForExpenseInSync(expenseId)
     }
+
+    /**
+     * Returns transaction to display
+     */
+    fun getTransactionsForDisplay(groupId: Int,userId: Int): LiveData<List<Transaction>> {
+        return dao.getTransactionsForDisplay(groupId,userId).asLiveData()
+    }
+
 }

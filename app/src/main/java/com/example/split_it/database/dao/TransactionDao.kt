@@ -27,4 +27,10 @@ interface TransactionDao : AbstractDao<Transaction> {
     @Query("SELECT * FROM `Transaction` WHERE expenseId=:expenseId")
     fun getTransactionsForExpenseInSync(expenseId: Int): Transaction
 
+    /**
+     * Returns transaction to display
+     */
+    @Query("SELECT * FROM `Transaction` WHERE groupId=:groupId AND fromUser=:userId AND isPaid=1")
+    fun getTransactionsForDisplay(groupId: Int,userId: Int): Flow<List<Transaction>>
+
 }

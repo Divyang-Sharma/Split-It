@@ -50,7 +50,7 @@ class ViewPagerAdapter(
         return when (position) {
             GROUP_MEMBERS_TAB_POSITION -> GroupMembersFragment(groupId)
             EXPENSE_TAB_POSITION -> ExpensesFragment(groupId,userId)
-            TRANSACTIONS_TAB_POSITION -> TransactionsFragment(groupId)
+            TRANSACTIONS_TAB_POSITION -> TransactionsFragment(groupId,userId)
             else -> Fragment() // default case | shouldn't happen
         }
     }

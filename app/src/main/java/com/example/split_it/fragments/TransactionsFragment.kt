@@ -1,15 +1,24 @@
 package com.example.split_it.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.split_it.R
+import com.example.split_it.adapters.AdapterTransactions
+import com.example.split_it.database.AppDatabase
+import com.example.split_it.database.repository.TransactionRepository
 
-class TransactionsFragment(groupId: Int) : Fragment() {
+class TransactionsFragment(
+    val groupId: Int,
+    val userId: Int,
+) : Fragment() {
 
-    var transactionsView : View? = null
+    var transactionsView: View? = null
 
     /**
      * Similar to onCreate in Activity
@@ -22,9 +31,19 @@ class TransactionsFragment(groupId: Int) : Fragment() {
 
         transactionsView = inflater.inflate(R.layout.fragment_group_members, container, false)
 
-        //TODO: logic of transactions goes here
+        val activityContext = requireContext()
+        val database = AppDatabase.getDatabase(activityContext)
+        val transactionRepository = TransactionRepository(database)
 
-        //use findViewById with view `transactionsView?.findViewById<>()`
+        val recyclerview = transactionsView?.findViewById<RecyclerView>(R.id.recyclerview)
+        recyclerview?.layoutManager = LinearLayoutManager(context)
+
+        transactionRepository.getTransactionsForDisplay(groupId,userId).observe(activityContext as LifecycleOwner) { transactionList ->
+            val transactionAdapter = AdapterTransactions(transactionList)
+            recyclerview?.adapter = transactionAdapter
+        }
+
+
 
         return transactionsView
     }
