@@ -21,8 +21,10 @@ class GroupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_group)
 
         val groupId = intent.getIntExtra("groupId",-1)
+        val userId = intent.getIntExtra("userId",-1)
 
-        if(groupId == -1) {
+
+        if(userId == -1 || groupId == -1) {
             Toast.makeText(this,"Some error has occured!",LENGTH_SHORT).show()
             finish()
         }
@@ -35,28 +37,6 @@ class GroupActivity : AppCompatActivity() {
         val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager, lifecycle, groupId)
         viewPager2.adapter = viewPagerAdapter
         viewPagerAdapter.setUpTabTitles(viewPager2, tabLayout)
-
-
-        //Testing Purpose
-        val database = AppDatabase.getDatabase(this)
-        val userRepository = UserRepository(database)
-        val groupRepository = GroupRepository(database)
-        val expenseRepository = ExpenseRepository(database)
-
-        val user1 = User(1,"split","splitupi")
-        val user2 = User(2,"split","splitupi")
-
-        val groups: List<Int> = listOf(1)
-        val group = Group(1, "splitgroup",groups)
-        val expense = Expense(1,1,1,200.0,"splitopic")
-
-        userRepository.insertUser(user1)
-        userRepository.insertUser(user2)
-
-        groupRepository.insertGroup(group)
-        expenseRepository.insertExpense(expense)
-
-
 
 
     }
