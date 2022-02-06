@@ -8,6 +8,6 @@
         android:layout_width="108dp"
         android:layout_height="39dp"
         android:text="Item-Name"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="16dp" />
 </RelativeLayout>

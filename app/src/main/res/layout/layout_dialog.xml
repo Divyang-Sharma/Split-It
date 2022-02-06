@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/light_blue"
+    android:foregroundTint="#FFFFFF">
 
     <EditText
         android:id="@+id/edit_username"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Group" />
+        android:layout_height="65dp"
+        android:background="@color/white"
+        android:hint="Group"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorLink="#000000"
+        android:paddingLeft="22dp"
+        />
 
 
 </RelativeLayout>

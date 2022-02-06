@@ -123,7 +123,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         new AlertDialog.Builder(this)
                 .setView(dialogView)
-                .setTitle("Group name")
+                .setTitle("ENTER GROUP NAME")
                 .setNegativeButton("Cancel", (dialogInterface, i) -> {
                 })
                 .setPositiveButton("Ok", (dialogInterface, i) -> {
