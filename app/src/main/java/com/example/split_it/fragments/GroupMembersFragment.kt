@@ -67,14 +67,15 @@ class GroupMembersFragment(
 
 
         //Floating action button
-        var add_button =
-            groupMembersView?.findViewById<FloatingActionButton>(R.id.add_member_button)
+        val addButton = groupMembersView?.findViewById<FloatingActionButton>(R.id.add_member_button)
         //print(add_button)
-        add_button?.setOnClickListener {
+        addButton?.setOnClickListener {
+
             // inflates the xml to the java object view
             val dialogView = layoutInflater.inflate(R.layout.layout_dialog_new_member, null)
             val name = dialogView.findViewById<EditText>(R.id.name)
             val email = dialogView.findViewById<EditText>(R.id.email)
+
             AlertDialog.Builder(context)
                 .setView(dialogView)
                 .setTitle("ENTER NEW MEMBER")

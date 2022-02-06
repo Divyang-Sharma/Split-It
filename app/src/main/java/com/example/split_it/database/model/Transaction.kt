@@ -9,7 +9,6 @@ data class Transaction(
     val id: Int?,
 
     val groupId: Int?,
-    val expenseId: Int?,
     val fromUser: Int?,
     val toUser: Int?,
 

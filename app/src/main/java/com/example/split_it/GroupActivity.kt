@@ -34,7 +34,7 @@ class GroupActivity : AppCompatActivity() {
         val viewPager2 = findViewById<ViewPager2>(R.id.view_pager_2)
 
         // Setting adapter
-        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager, lifecycle, groupId)
+        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager, lifecycle, groupId,userId)
         viewPager2.adapter = viewPagerAdapter
         viewPagerAdapter.setUpTabTitles(viewPager2, tabLayout)
 
