@@ -1,4 +1,4 @@
-package com.example.split_it;
+package com.example.split_it.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.split_it.ui.activities.GroupActivity;
+import com.example.split_it.R;
 import com.example.split_it.database.model.Group;
 
 import java.util.List;

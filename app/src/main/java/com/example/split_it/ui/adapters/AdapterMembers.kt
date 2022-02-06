@@ -1,4 +1,4 @@
-package com.example.split_it.adapters
+package com.example.split_it.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater

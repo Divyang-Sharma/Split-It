@@ -1,4 +1,4 @@
-package com.example.split_it.adapters
+package com.example.split_it.ui.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -11,9 +11,9 @@ import com.example.split_it.common.TabLayoutConstants.GROUP_MEMBERS_TAB_NAME
 import com.example.split_it.common.TabLayoutConstants.GROUP_MEMBERS_TAB_POSITION
 import com.example.split_it.common.TabLayoutConstants.TRANSACTIONS_TAB_NAME
 import com.example.split_it.common.TabLayoutConstants.TRANSACTIONS_TAB_POSITION
-import com.example.split_it.fragments.ExpensesFragment
-import com.example.split_it.fragments.GroupMembersFragment
-import com.example.split_it.fragments.TransactionsFragment
+import com.example.split_it.ui.fragments.ExpensesFragment
+import com.example.split_it.ui.fragments.GroupMembersFragment
+import com.example.split_it.ui.fragments.TransactionsFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 

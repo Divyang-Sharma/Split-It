@@ -1,4 +1,4 @@
-package com.example.split_it.fragments
+package com.example.split_it.ui.fragments
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -15,7 +15,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.split_it.R
-import com.example.split_it.adapters.AdapterExpenses
+import com.example.split_it.ui.adapters.AdapterExpenses
 import com.example.split_it.database.AppDatabase
 import com.example.split_it.database.model.Expense
 import com.example.split_it.database.model.Transaction

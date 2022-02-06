@@ -1,4 +1,4 @@
-package com.example.split_it.fragments
+package com.example.split_it.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.split_it.R
-import com.example.split_it.adapters.AdapterTransactions
+import com.example.split_it.ui.adapters.AdapterTransactions
 import com.example.split_it.database.AppDatabase
 import com.example.split_it.database.repository.TransactionRepository
 

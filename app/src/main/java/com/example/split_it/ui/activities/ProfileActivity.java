@@ -1,4 +1,4 @@
-package com.example.split_it;
+package com.example.split_it.ui.activities;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.split_it.R;
+import com.example.split_it.ui.adapters.CustomAdapter;
 import com.example.split_it.database.AppDatabase;
 import com.example.split_it.database.model.Group;
 import com.example.split_it.database.repository.GroupRepository;
