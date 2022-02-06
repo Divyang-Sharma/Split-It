@@ -13,5 +13,5 @@ data class Group (
     var name: String?,
 
     //foreign keys
-    var users: List<Int>? = ArrayList<Int>(),
+    var users: List<Int>?,
 )

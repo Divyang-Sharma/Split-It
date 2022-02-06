@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.split_it.R
 
-class TransactionsFragment : Fragment() {
+class TransactionsFragment(groupId: Int) : Fragment() {
 
     var transactionsView : View? = null
 

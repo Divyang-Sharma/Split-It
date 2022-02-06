@@ -45,4 +45,11 @@ class ExpenseRepository(val database: AppDatabase) {
     fun getExpenses(): LiveData<List<Expense>> {
         return dao.getExpenses().asLiveData()
     }
+
+    /**
+     * Returns livedata of expenses for given Group
+     */
+    fun getExpensesForGroup(groupId : Int): LiveData<List<Expense>> {
+        return dao.getExpensesForGroup(groupId).asLiveData()
+    }
 }

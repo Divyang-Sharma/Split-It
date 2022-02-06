@@ -14,4 +14,16 @@ interface GroupDao : AbstractDao<Group> {
     @Query("SELECT * FROM `Group`")
     fun getGroups(): Flow<List<Group>>
 
+    /**
+     * Returns all the groups from the table
+     */
+    @Query("SELECT * FROM `Group` WHERE id=:groupId")
+    fun getGroupFromId(groupId: Int): Flow<Group>
+
+    /**
+     * Returns all the groups from the table
+     */
+    @Query("SELECT * FROM `Group` WHERE :userId IN (users)")
+    fun getGroupForUser(userId: Int): Flow<List<Group>>
+
 }
