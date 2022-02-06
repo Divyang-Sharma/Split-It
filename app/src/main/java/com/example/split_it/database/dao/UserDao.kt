@@ -2,7 +2,6 @@ package com.example.split_it.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import androidx.room.Transaction
 import com.example.split_it.database.model.User
 import kotlinx.coroutines.flow.Flow
 
@@ -23,11 +22,15 @@ interface UserDao : AbstractDao<User> {
     fun getUser(userId: Int?): Flow<User?>
 
     /**
-     * Returns all the users from the table
+     * Returns list of users from lsit of ids
      */
-    @Query(
-        "SELECT User.* FROM User Where id IN (:userIds)"
-    )
+    @Query("SELECT User.* FROM User Where id IN (:userIds)")
     fun getUsersFromIds(userIds: List<Int>): Flow<List<User>>
+
+    /**
+     * Returns user if email exists or returns null
+     */
+    @Query("SELECT* FROM User WHERE email=:email")
+    fun getUserFromEmail(email: String) : Flow<User?>
 
 }

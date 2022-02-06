@@ -60,4 +60,11 @@ class UserRepository(val database: AppDatabase) {
         return dao.getUsersFromIds(userIds).asLiveData()
     }
 
+    /**
+     * Returns livedata of user from email
+     */
+    fun getUserFromEmail(email: String): LiveData<User?> {
+        return dao.getUserFromEmail(email).asLiveData()
+    }
+
 }
