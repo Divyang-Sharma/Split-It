@@ -67,4 +67,17 @@ class UserRepository(val database: AppDatabase) {
         return dao.getUserFromEmail(email).asLiveData()
     }
 
+    /**
+     * Returns livedata of user for given userId synchronously
+     */
+    fun getUsersFromIdsInSync(userIds: List<Int>): List<User?> {
+        return dao.getUsersFromIdsInSync(userIds)
+    }
+
+    /**
+     * Returns livedata of user for given userId
+     */
+    fun getUserInSync(userId: Int?): User? {
+        return dao.getUserInSync(userId)
+    }
 }

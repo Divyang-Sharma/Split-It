@@ -61,7 +61,7 @@ class GroupRepository(val database: AppDatabase) {
     }
 
     /**
-     * Returns livedata of group by id.
+     * Returns livedata of group by id synchronously
      */
      fun getGroupForIdInSync(groupId : Int): Group {
         return dao.getGroupFromIdInSync(groupId)

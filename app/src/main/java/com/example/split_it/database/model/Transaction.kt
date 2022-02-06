@@ -14,5 +14,7 @@ data class Transaction(
     val toUser: Int?,
 
     var amount: Double?,
-    var topicOfExpense: String? = ""
+    var topicOfExpense: String? = "",
+    var displayString: String? = "",
+    var isPaid: Boolean = false
 )

@@ -1,4 +1,4 @@
-package com.example.split_it;
+package com.example.split_it.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.split_it.R;
 import com.example.split_it.database.AppDatabase;
 import com.example.split_it.database.model.User;
 import com.example.split_it.database.repository.UserRepository;

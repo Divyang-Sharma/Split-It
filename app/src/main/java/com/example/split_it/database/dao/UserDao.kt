@@ -33,4 +33,17 @@ interface UserDao : AbstractDao<User> {
     @Query("SELECT* FROM User WHERE email=:email")
     fun getUserFromEmail(email: String) : Flow<User?>
 
+
+    /**
+     * Returns user based on userId synchronously
+     */
+    @Query("SELECT * FROM User WHERE id IN (:userIds)")
+    fun getUsersFromIdsInSync(userIds: List<Int>): List<User?>
+
+    /**
+     * Returns user based on userId
+     */
+    @Query("SELECT * FROM User WHERE id=:userId")
+    fun getUserInSync(userId: Int?): User?
+
 }

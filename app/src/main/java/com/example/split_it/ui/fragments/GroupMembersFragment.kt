@@ -1,4 +1,4 @@
-package com.example.split_it.fragments
+package com.example.split_it.ui.fragments
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -13,7 +13,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.split_it.R
-import com.example.split_it.adapters.AdapterMembers
+import com.example.split_it.ui.adapters.AdapterMembers
 import com.example.split_it.database.AppDatabase
 import com.example.split_it.database.model.User
 import com.example.split_it.database.repository.GroupRepository
@@ -67,14 +67,15 @@ class GroupMembersFragment(
 
 
         //Floating action button
-        var add_button =
-            groupMembersView?.findViewById<FloatingActionButton>(R.id.add_member_button)
+        val addButton = groupMembersView?.findViewById<FloatingActionButton>(R.id.add_member_button)
         //print(add_button)
-        add_button?.setOnClickListener {
+        addButton?.setOnClickListener {
+
             // inflates the xml to the java object view
             val dialogView = layoutInflater.inflate(R.layout.layout_dialog_new_member, null)
             val name = dialogView.findViewById<EditText>(R.id.name)
             val email = dialogView.findViewById<EditText>(R.id.email)
+
             AlertDialog.Builder(context)
                 .setView(dialogView)
                 .setTitle("ENTER NEW MEMBER")

@@ -1,4 +1,4 @@
-package com.example.split_it.adapters
+package com.example.split_it.ui.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -11,9 +11,9 @@ import com.example.split_it.common.TabLayoutConstants.GROUP_MEMBERS_TAB_NAME
 import com.example.split_it.common.TabLayoutConstants.GROUP_MEMBERS_TAB_POSITION
 import com.example.split_it.common.TabLayoutConstants.TRANSACTIONS_TAB_NAME
 import com.example.split_it.common.TabLayoutConstants.TRANSACTIONS_TAB_POSITION
-import com.example.split_it.fragments.ExpensesFragment
-import com.example.split_it.fragments.GroupMembersFragment
-import com.example.split_it.fragments.TransactionsFragment
+import com.example.split_it.ui.fragments.ExpensesFragment
+import com.example.split_it.ui.fragments.GroupMembersFragment
+import com.example.split_it.ui.fragments.TransactionsFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -24,7 +24,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 class ViewPagerAdapter(
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle,
-    val groupId: Int
+    val groupId: Int,
+    val userId: Int
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
     // order in which tabs are displayed
@@ -48,8 +49,8 @@ class ViewPagerAdapter(
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             GROUP_MEMBERS_TAB_POSITION -> GroupMembersFragment(groupId)
-            EXPENSE_TAB_POSITION -> ExpensesFragment(groupId)
-            TRANSACTIONS_TAB_POSITION -> TransactionsFragment(groupId)
+            EXPENSE_TAB_POSITION -> ExpensesFragment(groupId,userId)
+            TRANSACTIONS_TAB_POSITION -> TransactionsFragment(groupId,userId)
             else -> Fragment() // default case | shouldn't happen
         }
     }

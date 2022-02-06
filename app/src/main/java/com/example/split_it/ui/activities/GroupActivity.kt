@@ -1,18 +1,12 @@
-package com.example.split_it
+package com.example.split_it.ui.activities
 
 import android.os.Bundle
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.example.split_it.adapters.ViewPagerAdapter
-import com.example.split_it.database.AppDatabase
-import com.example.split_it.database.model.Expense
-import com.example.split_it.database.model.Group
-import com.example.split_it.database.model.User
-import com.example.split_it.database.repository.ExpenseRepository
-import com.example.split_it.database.repository.GroupRepository
-import com.example.split_it.database.repository.UserRepository
+import com.example.split_it.R
+import com.example.split_it.ui.adapters.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 
 class GroupActivity : AppCompatActivity() {
@@ -34,7 +28,7 @@ class GroupActivity : AppCompatActivity() {
         val viewPager2 = findViewById<ViewPager2>(R.id.view_pager_2)
 
         // Setting adapter
-        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager, lifecycle, groupId)
+        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager, lifecycle, groupId,userId)
         viewPager2.adapter = viewPagerAdapter
         viewPagerAdapter.setUpTabTitles(viewPager2, tabLayout)
 
