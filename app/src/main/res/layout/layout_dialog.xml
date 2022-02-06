@@ -11,11 +11,10 @@
         android:layout_height="65dp"
         android:background="@color/white"
         android:hint="Group"
+        android:paddingLeft="22dp"
         android:textColor="#000000"
         android:textColorHighlight="#000000"
-        android:textColorLink="#000000"
-        android:paddingLeft="22dp"
-        />
+        android:textColorLink="#000000" />
 
 
 </RelativeLayout>
