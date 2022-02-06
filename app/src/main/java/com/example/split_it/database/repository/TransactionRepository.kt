@@ -45,4 +45,18 @@ class TransactionRepository(val database: AppDatabase) {
     fun getTransactions(): LiveData<List<Transaction>> {
         return dao.getTransactions().asLiveData()
     }
+
+    /**
+     * Returns transaction corresponding to expense
+     */
+    fun getTransactionsForExpense(expenseId: Int): LiveData<Transaction> {
+        return dao.getTransactionsForExpense(expenseId).asLiveData()
+    }
+
+    /**
+     * Returns transaction corresponding to expense
+     */
+    fun getTransactionsForExpenseInSync(expenseId: Int): Transaction {
+        return dao.getTransactionsForExpenseInSync(expenseId)
+    }
 }

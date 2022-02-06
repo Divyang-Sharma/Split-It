@@ -106,11 +106,10 @@ class ExpensesFragment(val groupId: Int, val userId: Int) : Fragment() {
                             //close the dialog
                             dialogInterface.dismiss()
 
-                            //adding the current user to the member list
-                            val memberId = System.currentTimeMillis().toInt()
+                            val expenseId = System.currentTimeMillis().toInt()
 
                             val expense = Expense(
-                                null,
+                                expenseId,
                                 groupId,
                                 selectedUser?.id,
                                 amount.toDouble(),
@@ -120,10 +119,12 @@ class ExpensesFragment(val groupId: Int, val userId: Int) : Fragment() {
                             val transaction = Transaction(
                                 null,
                                 groupId,
+                                expenseId,
                                 userId,
                                 selectedUser?.id,
                                 amount.toDouble(),
-                                eventName
+                                eventName,
+                                getDisplayStringForTransaction(currentUser,selectedUser,amount)
                             )
 
                             CoroutineScope(Dispatchers.IO).launch {
@@ -143,6 +144,14 @@ class ExpensesFragment(val groupId: Int, val userId: Int) : Fragment() {
         }
 
         return expensesView
+    }
+
+    private fun getDisplayStringForTransaction(
+        currentUser: User?,
+        selectedUser: User?,
+        amount: String
+    ): String {
+        return "You paid ${selectedUser?.name} Rs. $amount"
     }
 
     private fun getUserNamesFromUsersExcludingCurrentUser(users: List<User?>): ArrayList<String> {

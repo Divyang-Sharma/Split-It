@@ -9,9 +9,12 @@ data class Transaction(
     val id: Int?,
 
     val groupId: Int?,
+    val expenseId: Int?,
     val fromUser: Int?,
     val toUser: Int?,
 
     var amount: Double?,
-    var topicOfExpense: String? = ""
+    var topicOfExpense: String? = "",
+    var displayString: String? = "",
+    var isPaid: Boolean = false
 )
