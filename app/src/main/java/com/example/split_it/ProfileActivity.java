@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.split_it.database.AppDatabase;
 import com.example.split_it.database.model.Group;
 import com.example.split_it.database.repository.GroupRepository;
+import com.example.split_it.database.repository.UserRepository;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -30,7 +31,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -45,7 +45,10 @@ public class ProfileActivity extends AppCompatActivity {
     Button addGroupButton;
 
     GroupRepository groupRepository;
+    UserRepository userRepository;
     AppDatabase appDatabase;
+
+    Integer userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         appDatabase = AppDatabase.Companion.getDatabase(this);
         groupRepository = new GroupRepository(appDatabase);
+        userRepository = new UserRepository(appDatabase);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this, gso);
@@ -74,9 +78,11 @@ public class ProfileActivity extends AppCompatActivity {
 
             name.setText(personName);
 
+
             Glide.with(this).load(String.valueOf(Photo)).placeholder(defaultimage).into(ProfilePhoto);
 
         }
+
 
         addGroupButton = findViewById(R.id.button);
         addGroupButton.setOnClickListener(new View.OnClickListener() {
@@ -100,9 +106,32 @@ public class ProfileActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        groupRepository.getGroups().observe(this, groups -> {
-            recyclerView.setAdapter(new CustomAdapter(groups));
+        //Getting groups for current user and displaying in recyclerview
+        userRepository.getUserFromEmail(acct.getEmail()).observe(this, user -> {
+            userId = user.getId();
+
+            groupRepository.getGroups().observe(this, groups -> {
+                groups = getGroupsForCurrentUser(groups, userId);
+                recyclerView.setAdapter(new CustomAdapter(groups, userId));
+            });
         });
+
+
+    }
+
+    /**
+     * Uses a for loop to iterate over the groups and filters the
+     * groups that the user is in
+     */
+    private List<Group> getGroupsForCurrentUser(List<Group> groups, Integer userId) {
+        List<Group> filteredGroups = new ArrayList<>();
+
+        for (Group g : groups) {
+            if (g.getUsers().contains(userId)) {
+                filteredGroups.add(g);
+            }
+        }
+        return filteredGroups;
     }
 
     //Data send in Recycler-View
@@ -118,6 +147,7 @@ public class ProfileActivity extends AppCompatActivity {
     //Dialog Functions
     public void openDialog() {
 
+        // inflates the xml to the java object view
         View dialogView = getLayoutInflater().inflate(R.layout.layout_dialog, null);
         EditText groupName = dialogView.findViewById(R.id.edit_username);
 
@@ -134,14 +164,14 @@ public class ProfileActivity extends AppCompatActivity {
                         dialogInterface.dismiss();
 
                         //adding the current user to the member list
-                        List<Integer> userList = Collections.singletonList(1);
+                        List<Integer> userList = Collections.singletonList(userId);
 
                         //inserts the group into the db
-                        Group group = new Group(null,groupNameText,userList);
+                        Group group = new Group(null, groupNameText, userList);
                         groupRepository.insertGroup(group);
                     }
                 })
-                .show();
+                .show(); // shows it | if not there it won't show
 
     }
 

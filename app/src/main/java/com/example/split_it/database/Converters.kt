@@ -1,9 +1,7 @@
 package com.example.split_it.database
 
 import androidx.room.TypeConverter
-import com.example.split_it.database.model.User
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 /**
  * TypeConverter class for database.
@@ -14,14 +12,9 @@ class Converters {
 
     // List of Int
     @TypeConverter
-    fun fromListOfInt(value: List<Int>?): String? {
-        return Gson().toJson(value)
-    }
+    fun fromListOfInt(value: List<Int>?): String = Gson().toJson(value)
 
     @TypeConverter
-    fun toListOfInt(value: String?): List<Int?>? {
-        val listType= object : TypeToken<List<Int?>?>() {}.type
-        return Gson().fromJson(value, listType)
-    }
+    fun toListOfInt(value: String) = Gson().fromJson(value, Array<Int>::class.java).toList()
 
 }
