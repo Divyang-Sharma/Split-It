@@ -15,11 +15,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.split_it.R
 import com.example.split_it.adapters.AdapterMembers
 import com.example.split_it.database.AppDatabase
-import com.example.split_it.database.model.Group
 import com.example.split_it.database.model.User
 import com.example.split_it.database.repository.GroupRepository
 import com.example.split_it.database.repository.UserRepository
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class GroupMembersFragment(
     val groupId: Int
@@ -64,56 +66,58 @@ class GroupMembersFragment(
         }
 
 
-        Log.i("Float","Before func")
         //Floating action button
-        var add_button = groupMembersView?.findViewById<FloatingActionButton>(R.id.add_member_button)
-        Log.i("Float","After func")
+        var add_button =
+            groupMembersView?.findViewById<FloatingActionButton>(R.id.add_member_button)
         //print(add_button)
-        if (add_button != null) {
-            Log.i("Hello","Hi")
-            add_button.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(v: View) {
-                    // inflates the xml to the java object view
-                    val dialogView = layoutInflater.inflate(R.layout.layout_dialog_new_member, null)
-                    val name = dialogView.findViewById<EditText>(R.id.name)
-                    val email = dialogView.findViewById<EditText>(R.id.email)
-                    AlertDialog.Builder(context)
-                        .setView(dialogView)
-                        .setTitle("ENTER NEW MEMBER")
-                        .setNegativeButton(
-                            "Cancel"
-                        ) { dialogInterface: DialogInterface?, i: Int -> }
-                        .setPositiveButton("Ok") { dialogInterface: DialogInterface, i: Int ->
-                            Log.i("Float","Inside OK")
-                            val nameText = name.text.toString()
-                            val emailText = email.text.toString()
-                            if (!nameText.trim { it <= ' ' }.isEmpty()) {
+        add_button?.setOnClickListener {
+            // inflates the xml to the java object view
+            val dialogView = layoutInflater.inflate(R.layout.layout_dialog_new_member, null)
+            val name = dialogView.findViewById<EditText>(R.id.name)
+            val email = dialogView.findViewById<EditText>(R.id.email)
+            AlertDialog.Builder(context)
+                .setView(dialogView)
+                .setTitle("ENTER NEW MEMBER")
+                .setNegativeButton(
+                    "Cancel"
+                ) { dialogInterface: DialogInterface?, i: Int -> }
+                .setPositiveButton("Ok") { dialogInterface: DialogInterface, i: Int ->
+                    Log.i("Float", "Inside OK")
+                    val nameText = name.text.toString()
+                    val emailText = email.text.toString()
+                    if (!nameText.trim { it <= ' ' }.isEmpty()) {
 
-                                //close the dialog
-                                dialogInterface.dismiss()
+                        //close the dialog
+                        dialogInterface.dismiss()
 
-                                //adding the current user to the member list
+                        //adding the current user to the member list
+                        val memberId = System.currentTimeMillis().toInt()
+                        val member = User(memberId, nameText, emailText, null)
 
-                                val memberId= System.currentTimeMillis().toInt()
-                                //inserts the group into the db
-                                val member =
-                                    User(memberId, nameText, emailText,null)
+                        //inserts the group into the db | using coroutine to prevent loop of livedata
+                        CoroutineScope(Dispatchers.IO).launch {
+                            val group = groupRepository.getGroupForIdInSync(groupId)
 
-                                groupRepository.getGroupForId(groupId).observe(activityContext as LifecycleOwner) {group->
-                                    Log.i("Float","before group" + group.toString())
+                            // copies the list to mutable
+                            val usersCopy = group.users?.toMutableList()
 
-                                    group.users?.toMutableList()?.add(memberId)
-                                    Log.i("Float","after group" + group.toString())
+                            // adds the memberId
+                            usersCopy?.add(memberId)
 
-                                    groupRepository.updateGroup(group)
-                                    userRepository.insertUser(member)
-                                }
-                            }
+                            // reassigning new userList to the group
+                            group.users = usersCopy?.toList()
+
+                            // updating the database
+                            groupRepository.updateGroup(group)
+                            userRepository.insertUser(member)
                         }
-                        .show() // shows it | if not there it won't show
+
+
+                    }
                 }
-            })
+                .show() // shows it | if not there it won't show
         }
+
 
 
         return groupMembersView
